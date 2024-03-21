@@ -26,49 +26,52 @@ Prueba tecnica de QIK
 
 ### Ejecución
 1. Clonar el repositorio
-2. Instalar las dependencias.
-bash
+```bash
+git clone <repository-url>
 ```
+
+2. Instalar las dependencias
+```bash
 yarn install
 ```
 
-3. Instalar Nest CLI
-bash
-```
-npm i -g @nestjs/cli
-```
-
-4. Leventar el docker de la base de datos
-bash
-```
+3. Leventar el docker de la base de datos
+```bash
 docker-compose up -d
 ```
 
-5. Clonar el archivo ```.env.template``` y renombrar la copia a  ```.env``` y modificar las variables de entorno, si requiere.
+4. Clonar el archivo ```.env.template``` y renombrar la copia a  ```.env``` y modificar las variables de entorno, si requiere.
 
 
-
-6. Instalacion de las dependencias
+5. Instalacion de las dependencias
 
 ```bash
-$ yarn install
+ yarn install
 ```
 
-7. Ejecutar la aplicación
+6. Ejecutar la aplicación
 
 ```bash
 # development
-$ yarn run start
+ yarn run start
 
 # watch mode
-$ yarn run start:dev
+ yarn run start:dev
 ```
+
+
+
+> La aplicacion se levantara en la dirección: [http://localhost:3000/](http://localhost:3000/)
 
 ## Documentación de APIs
 
 __Swagger__
 
 [http://localhost:3000/api/api-docs#/](http://localhost:3000/api/api-docs#/)
+
+## Test
+
+_No Implementado_
 
 ## Como probar
 
@@ -96,9 +99,30 @@ Ahora estás listo para probar las APIs. Revisar la documentacion de las [api-do
 * MongoDB
 * Docker
 
-### Librerías
-* Mongoose
+  #### Librerías (a parte de los propios de Nest)
 
+  * faker-js - Para generar datos dummy
+  * joi - Para la configuracion de los _environments_
+  * mongoose - Manejador de la base de datos Mongo
+
+
+## Clean architecture
+
+### Estructura de directorios
+
+```markdown
+    ∇ src
+        ∇ config             # Configuraciones del proyecto, variables de entorno
+        ∇ domain             # Lógica de la aplicacion y entidades, sin librerias externas.
+        ∇ infraestructure    # Implementación de la lógica, comunicacion entre capas.
+        ∇ presentation       # Controladores y API REST, presentación de datos, modulos de Nest.
+        ∇ shared             # Código compartido entre diferentes las diferentes capas de la aplicación.
+        - app.module.ts
+        - main.ts
+    - .env
+    - docker-compose.yaml    # crear y levantar la base de datos
+
+```
 
 ## Autor
 

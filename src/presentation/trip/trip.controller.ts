@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { HttpStatusCode } from 'axios';
 import { DriverEntity } from 'src/domain/driver';
 import { TripService } from 'src/infraestructure/services';
 import { ValidationIdPipe } from 'src/shared/pipes';
@@ -34,7 +33,7 @@ export class TripController {
   @ApiResponse({ status: 400, description: 'Parámetros no válidos' })
   @ApiResponse({ status: 404, description: 'Pasajero no encontrado' })
   @ApiResponse({
-    status: HttpStatusCode.Forbidden,
+    status: 403,
     description: 'El viaje no es valido',
   })
   @ApiResponse({ status: 500, description: 'Internal error' })
